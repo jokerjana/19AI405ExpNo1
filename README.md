@@ -1,6 +1,6 @@
 <h1>ExpNo 1 :Developing AI Agent with PEAS Description</h1>
 <h3>Name: JANARTHANAN B</h3>
-<h3>Register Number/Staff Id: 212223100014</h3>
+<h3>Register Number: 212223100014</h3>
 
 
 <h3>AIM:</h3>
