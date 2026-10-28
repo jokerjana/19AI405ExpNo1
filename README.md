@@ -1,8 +1,6 @@
 <h1>ExpNo 1 :Developing AI Agent with PEAS Description</h1>
 <h3>Name: JANARTHANAN B</h3>
 <h3>Register Number: 212223100014</h3>
-
-
 <h3>AIM:</h3>
 <br>
 <p>To find the PEAS description for the given AI problem and develop an AI agent.</p>
@@ -41,65 +39,55 @@
 <h3>STEP 5:</h3>
 <p>Measure the performance parameters: For each treatment performance incremented, for each movement performance decremented</p>
 
-### PROGRAM:
-```
+## code 
+```python
 import random
 
-class HealthMonitoringAgent:
-    def __init__(self, patient_data):
-        self.patient_data = patient_data
+class MedicineAgent:
+    def __init__(self):
+        self.location = "Room A"
+        self.performance = 0
 
-    def monitor_health(self):
-        while True:
-            current_health_state = self.sensors.get_health_state()
-            action = self.choose_action(current_health_state)
-            self.actuators.perform_action(action)
-            if self.choose_action(current_health_state)=="No specific action needed":
-                break
+    def act(self, environment):
+        temp = environment[self.location]["temperature"]
 
-    def choose_action(self, current_health_state):
-        # Example: A simple rule-based system for decision-making
-        if current_health_state['heart_rate'] > 120:
-            return "Alert healthcare provider: High heart rate detected"
-        elif current_health_state['blood_pressure'] > 140:
-            return "Alert healthcare provider: High blood pressure detected"
-        elif current_health_state['temperature'] > 38:
-            return "Recommend rest and monitor temperature"
+        if temp > 98.5:
+            print(f"Patient in {self.location} unhealthy ({temp:.1f}°F). Giving medicine.")
+            self.performance += 10
+            environment[self.location]["temperature"] = 98.0
         else:
-            return "No specific action needed"
+            print(f"Patient in {self.location} healthy ({temp:.1f}°F).")
 
-class HealthSensors:
-    def get_health_state(self):
-        # Example: Simulate health data retrieval (replace with real data in a practical scenario)
-        return {
-            'heart_rate': random.randint(60, 150),
-            'blood_pressure': random.randint(90, 160),
-            'temperature': random.uniform(36.0, 38.5)
-        }
+        self.location = "Room B" if self.location == "Room A" else "Room A"
+        self.performance -= 1
+        print(f"Moving to {self.location}. Performance: {self.performance}")
+        print("-" * 30)
 
-class HealthActuators:
-    def perform_action(self, action):
-        # Example: Print or log the action (in a real scenario, this might involve more complex actions)
-        print(action)
+def main():
+    environment = {
+        "Room A": {"temperature": random.uniform(97.0, 102.0)},
+        "Room B": {"temperature": random.uniform(97.0, 102.0)}
+    }
+
+    agent = MedicineAgent()
+    print("Starting simulation.")
+    print("-" * 30)
+
+    for step in range(5):
+        print(f"--- Step {step + 1} ---")
+        agent.act(environment)
+
+        random_room = random.choice(["Room A", "Room B"])
+        environment[random_room]["temperature"] = random.uniform(99.0, 103.0)
+
+    print("Simulation finished.")
 
 if __name__ == "__main__":
-    patient_data = {'patient_id': 123, 'name': 'John Doe', 'age': 35}
-    
-    health_sensors = HealthSensors()
-    health_actuators = HealthActuators()
-    
-    health_monitoring_agent = HealthMonitoringAgent(patient_data)
-    health_monitoring_agent.sensors = health_sensors
-    health_monitoring_agent.actuators = health_actuators
-    
-    health_monitoring_agent.monitor_health()
-
+    main()
 ```
-
-### OUTPUT:
-![exp_1_output](https://github.com/user-attachments/assets/02e3feff-6280-4403-a1cf-646bcaa71de1)
-
-### RESULT:
-Thus, the code to develop an AI agent has been created successfully.
+## output
+<img width="921" height="505" alt="image" src="https://github.com/user-attachments/assets/1d101bbc-9615-4df8-8aff-30ff05a4e6d8" />
 
 
+## Result 
+  Thus the developing AI Agent with PEAS Description was implemented using Python Programming Successfully.
